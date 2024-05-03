@@ -1,0 +1,695 @@
+/*
+---Estructura de CSS---
+    - global
+    - html
+    - body
+    - nav
+    - section
+    - p
+    - h2
+    - h3
+    - button
+---colores---
+    - white fondo
+    - black fondo
+    - red texto
+---tipografía---
+    - montserrat
+*/
+/* ---global--- */
+/* Descripción: estilo a nivel global de la web
+    Estructura:
+    - margin y padding
+*/
+*{
+    margin: 0;
+    padding: 0;
+}
+/* ---global--- */
+
+/* ---html,body--- */
+/* Descripción: estilo a nivel general de la web
+    Estructura:
+    - scroll-behavior
+*/
+html,body{
+    scroll-behavior: smooth;
+}
+/* ---html,body--- */
+/* ---body--- */
+/* Descripción: estilo a nivel del cuerpo de la web
+    Estructura:
+    - tipografía
+        - color, tamaño, estilo en mayúsculas
+*/
+body{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    color: red;
+    text-transform: uppercase;
+    min-width:320px; 
+}
+/* ---body--- */
+/* ---nav(navnormal)--- */
+/* Descripción: estilo a nivel del navegador
+    Estructura:
+    - nav
+    - ul
+        - li 
+            - ul
+                - li x 4
+        -div .derecha
+            -li x 4
+*/
+nav{
+   position: fixed; /*nav fijo en web*/
+   z-index: 1; /*FIX si no se queda por detrás de imágenes*/
+   width: 100%;
+}
+nav ul{
+display: flex;
+list-style: none;
+justify-content: space-between;
+}
+nav a{
+    display: block;
+    font-size: 2em;
+    text-decoration: none;
+    padding: 20px 15px;/*desplazamiento del padding para crear efecto movimiento al pasar por encima el ratón*/
+    transition: padding-top 0.6s;/* transición para el efecto movimiento*/
+    color: red; /*FIX si no el texto aparece en negro*/
+    font-weight:500;
+}
+nav a:hover{
+    padding-top: 40px; /*al pasar por encima afecta al padding para el efecto movimiento*/
+}
+.derecha{
+    display: flex;/*FIX para desplazar las secciones -who -am -i -? a la dcha. y -projects se mantiene a la izq*/
+}
+nav li ul{/*BUG el texto aparece muy abrupto*/
+    display: none;
+    position: absolute; 
+}
+nav li:hover > ul{
+    display: block;
+    animation-name: suave;/*FIX el texto aparece suavemente*/
+    animation-duration: 1s;
+}
+@keyframes suave{
+    0%{
+        opacity: 0%;
+    }
+    100%{
+        opacity: 100%;
+    }
+}
+/* ---nav(navnormal)--- */
+/* ---nav(navpeq) max:800px--- */
+.navpeq, .abrir{
+    display: none;/*BUG navnormal no encajaba con dimensiones < 800px FIX creación de otro nav(.navpeq)*/
+}
+/* ---nav(navpeq) max:800px--- */
+
+/* ---secciones de contenido de la pág index.html--- */
+/* Descripción: estilo a nivel de las secciones de contenido
+    Estructura:
+    - primera sección
+        -texto 
+            - p
+            - h2
+    - segunda sección
+        - galeria de img
+        - h2
+    - tercera sección
+        - video
+        - h2
+    - cuarta sección
+        - texto
+            - h3
+            - h2
+*/
+section{
+    height: 100vh;
+    position: relative; 
+    overflow: hidden; 
+}
+h2{/*títulos de las secciones*/
+    font-weight: 600;
+    font-size: 5em;
+    position: absolute;
+    left: 50px;
+    bottom: 50px;
+    z-index: 1;/*BUG:título queda por detrás de elementos --> FIX: ponerle un z-index más elevado*/
+}
+/* ---primera sección de la pág index.html--- */
+/*
+Descripción: estilo primera sección
+    Estructura:
+    - div .contenedor
+        - h2
+        - p
+*/
+section:nth-child(2){
+    background:url("../img/fondos/seccion1fondo.jpg") no-repeat center;
+    background-size:cover;
+}
+p{
+    font-weight: 700;
+    font-size: 2em;
+    position: absolute;}
+.contenedor p{
+    left: -100%;/*cuadro texto desaparece para efecto hover al pasar ratón*/
+    width: 50%;
+    border-radius: 2%;    
+    height: 50%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    transition: ease-in-out  1s;
+    background-color: rgba(0,0,0,0.3);/*BUG:no se veía el texto correctamente sin background-color pero quería que se viera la fotografía de fondo --> FIX: añadir poca opacidad para separar elementos */
+}
+.contenedor:hover p {
+    left: 0;/*cuadro texto aparece para efecto hover al pasar ratón*/
+}
+/* ---primera sección de la pág index.html--- */
+
+/* ---segunda sección de la pág index.html--- */
+/*
+Descripción: estilo segunda sección
+    Estructura:
+    - h2
+    - div .porfolio
+        -img x 6
+    - div .modal
+        - button
+        - img
+*/
+section:nth-child(3){
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background:url("../img/fondos/seccion2fondo.jpg") no-repeat center; 
+    background-size:cover;  
+}
+/* ---galería de fotografías ".porfolio"--- */
+/*
+Descripción: estilo a nivel de la galería de fotografías (.porfolio)
+    Estructura:
+    - div .porfolio
+        -img x 6
+    -div .modal
+        - button (flechas < >)
+        - img
+*/
+.porfolio{
+    width: 700px;
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    gap: 30px;
+}
+.porfolio a, .porfolio img{
+    display: block;
+    width: 100%;
+    max-width: 700px;/* BUG: img ocupaban demasiado espacio al aumentar el width de la pantalla --> FIX: delimitarlo a 700px */
+}
+.porfolio a, .porfolio img:hover{
+    transform: scale(1.02);
+    transition:2s cubic-bezier(0.075, 0.82, 0.165, 1);
+    /* animación de aumentar tamaño img al pasar el cursor para incitar usuario al click y recalcar que es obj. pulsable */
+}
+.modal{/* al hacer click en img de .porfolio se muestra */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.3);/* BUG: se mezclaba con el contenido de la página --> FIX: añadir opacidad para separar los obj.*/
+    display: none;/*no aparece hasta ser pulsado*/
+    justify-content: space-evenly;
+    align-items: center;
+    z-index: 2;/*BUG título h2 se superpone a .modal --> FIX ponerle un z-index más elevado*/
+
+}
+.modal img{
+  max-width: 700px; /* BUG: no dejaba espacio para hacer click fuera de la img.(ocupaba toda la pantalla) --> FIX: delimitar width*/
+}
+.visible{/*clase añadida en js para que se muestre la .modal al hacerle click*/
+    display: flex;
+}
+.modal button{
+    -webkit-appearance: none;
+    appearance: none;
+    border: none;
+    background-color: transparent;
+    color: red;
+    font-size:3em;
+}
+/* ---galería de fotografías ".porfolio"--- */
+/* ---segunda sección de la pág index.html--- */
+
+/* ---tercera sección de la pág index.html--- */
+/*
+Descripción: estilo a nivel de la tercera sección
+    Estructura:
+    - h2
+    - video --> NO estilizado hasta responsive < 500px, en index.html ya especificado width y height
+*/
+section:nth-child(4){
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background:url("../img/fondos/seccion3fondo.jpg") no-repeat center;
+    background-size:cover;
+}
+/* ---tercera sección de la pág index.html--- */
+
+/* ---cuarta sección de la pág index.html--- */
+/*
+Descripción: estilo a nivel de la cuarta sección
+    Estructura:
+    - h2
+    - div .zona --> esta estructura se repite 4 veces
+        - a (href = istomina.html o fame.html o oliver.html o clodving.html)
+            - div .palabra
+                - h3 = istomina o fame o oliver o clodving
+*/
+section:nth-child(5){  
+    background:url("../img/fondos/seccion4fondo.jpg") no-repeat center;
+}
+h3{
+    font-size: 3em;
+}
+a{
+    color: black;/*sólo estos enlaces por decisión estética*/
+}
+.zona{
+    width: 100%;
+    margin-top: 3vh;/*BUG:situados demasiado arriba de la sección --> fix: añadir margin*/
+    height: 20vh;
+    filter:blur(3px);/*filtro para resaltar que es clickable y por decisión estética para que salte a primera vista imagen fondo*/
+    transition: filter 0.5s;
+}
+.palabra{
+    animation: movimiento 6s linear infinite;/*añadir efecto de movimiento a las palabras por la pantalla*/
+    position: absolute;
+}
+.zona:nth-child(2) .palabra{/*diferentes velocidades para añadir dinamismo y más atrayente para usuario*/
+    animation-duration: 4s;
+}
+.zona:nth-child(3) .palabra{
+    animation-duration: 3.8s;
+}
+.zona:nth-child(4) .palabra{
+    animation-duration: 4.3s;
+}
+.zona:hover{
+    filter:blur(0px);/*BUG permanecía borroso --> FIX: añadir en hover 0% borroso*/
+}
+@keyframes movimiento{
+    from{
+        left:-30vh;
+    }
+    to{
+        left:100%;
+    }
+}
+/* ---cuarta sección de la pág index.html--- */
+/* ---secciones de contenido de la pág index.html--- */
+
+/* ---página para istomina.html, fame.html, oliver.html, clodving.html--- */
+/*
+Descripción: estilo página
+    Estructura:
+        - nav
+        - section
+            - h2
+            - img
+        - section
+            - img
+            - img
+        - section
+            - h3
+            - img
+*/
+/* ---global--- */
+#proyectos{
+    color: rgb(255, 0, 0);
+}
+#proyectos h2{
+    transform: translate(-50%,-50%);/*BUG texto no centrado encima img --> FIX translate, top, left */
+    top: 55%;
+    left: 50%;
+    font-size: 12em;
+}
+#fame h2{
+    font-size: 17em;/*BUG font-size: 12como son menos letras que resto de proyectos no ocupaba el espacio suficiente --> FIX --> hacerlo más grande */
+}
+#proyectos h3{
+    font-weight: 700;
+}
+#proyectos img{
+height: 600px;
+}
+/* ---global--- */
+
+/* ---nav--- */
+/*
+Descripción: estilo nav
+    Estructura:
+        - ul
+            - li x3
+                - ul
+                    -li x3
+        - div .modo claro
+            - img .claro
+*/
+#proyectos nav ul{
+    justify-content: right;/*BUG aparecía el nav ocupando el width 100% de la pantalla --> FIX desplazarlo a la dcha.*/
+}
+#proyectos .modo img{/*botón que permite cambiar color pantalla al hacerle click*/
+    position: absolute;
+    top: 0;
+    padding-top: 2%;
+    padding-left: 2%;
+    left: 0;
+    width: auto;
+    height: 20px;
+}
+#proyectos .modo img:hover{
+    cursor: pointer;/*para generar más interacción con usuario*/
+}
+/* ---nav--- */
+/* ---sección--- */
+/*
+Descripción: estilo de las secciones
+    Estructura:
+        - section
+            - h2
+            - img
+        - section
+            - img
+            - img
+        - section
+            - h3
+            - img
+*/
+#proyectos section{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: none;
+}
+/* ---primera sección de la pág--- */
+#proyectos section:nth-child(5),#proyectos section:nth-child(6){
+    justify-content: space-evenly;
+}
+/* ---primera sección de la pág--- */
+
+/* ---segunda sección de la pág--- */
+#proyectos section:nth-child(6){
+    flex-direction: column;
+}
+/* ---segunda sección de la pág--- */
+
+/* ---tercera sección de la pág--- */
+#proyectos section:nth-child(6) a{
+    color: red;/*BUG aparecía en negro --> FIX obligarle a ser rojo*/
+    text-decoration: line-through;
+}
+/* ---tercera sección de la pág--- */
+/* ---sección--- */
+/* ---página #proyectos para istomina.html, fame.html, oliver.html, clodving.html--- */
+
+/* ---media queries--- */
+    /* ---media queries 1200px --- */
+    /*
+    Descripción: estilo max-width 1200px
+        Estructura de los elementos que los estilos han sido adaptados:
+        - index.html 
+            
+        - #proyectos.html --> istomina/fame/clodving/oliver.html para acortar término
+            - h2
+            - img
+    */
+@media screen and (max-width:1200px){
+        /* ---global--- */
+    p{
+        font-size: 1.7em;
+    }
+        /* ---global--- */
+        /* ---index.html--- */
+    section:nth-child(2){/*BUG img fondo no se aprecia -->FIX cambiar posición */
+        background-position-x: 90%;
+        background-position-y: 60%;
+    }
+    section:nth-child(4){
+        background-position-y: 100%;
+        background-position-x: 70%;
+    }
+        /* ---index.html--- */
+        /* ---proyectos.html--- */
+    #proyectos h2{
+        font-size:10em;
+    }
+    #fame h2{
+        font-size:12em;
+    }
+    #proyectos img{
+        height:450px;/*BUG img demasiado grandes-->FIX reducigr height */
+    }
+        /* ---proyectos.html--- */
+}
+    /* ---media queries 1200px --- */
+
+    /* ---media queries 850px --- */
+    
+@media screen and (max-width:850px){
+     /*
+    Descripción: estilo max-width 850px --> límite no en 800px porque este width es para tablets esencialmente --> Ipad Air 820px
+        Estructura:
+        nav
+            - .navnormal
+            - .navpeq
+        index.html 
+                - .contenedor (1a sección)
+                - .porfolio (3a sección galería de img)
+                - 4a seccion
+        #proyectos.html 
+            - h2
+            - img
+    */
+        /* ---global--- */
+h2{
+    font-size: 3em;
+}
+h3{
+    font-size: 2.5em;
+}
+        /* ---global--- */
+        /* ---index.html--- */
+section:nth-child(3){
+    background-position-x: 20%;
+    background-position-y: 80%;
+}
+section:nth-child(5){
+    background-size: 950px;
+}
+        /* ---index.html--- */
+        /* ---.navnormal--- */
+.navnormal{
+    display: none;/*escondemos .navnormal para diseño responsive con menú desplegable */
+}
+        /* ---.navnormal--- */
+        /* ---.navpeq--- */
+        /*
+        Descripción: estilo del .navpeq, entra < 850px
+                Estructura:
+                -button .abrir
+                -nav .navpeq
+                    -button .cerrar
+                    -ul
+                        -li x5  
+        */
+.navpeq, .navpeq ul{
+    display:block;
+    left: -200vh;/*no aparece a no ser que se haga click en él */
+    transition: left 0.8s;
+    background-color: rgba(0,0,0,0.3);
+    width: 100%;
+    height: 100vh;
+    z-index: 2;/*para aparecer por encima de h2*/
+}
+.desplegado{
+    left: 0;/*al hacer click sobre .abrir se le añade clase .desplegado*/
+}
+button{
+    background-color: transparent;
+    color: red;
+    -webkit-appearance: none;
+    appearance: none;
+    border: none;
+    cursor: pointer;
+    font-size:3em;
+}
+.cerrar{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: block;
+}
+.abrir{
+    display: block;
+    width: 30px;
+    padding: 5px 5px 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1; /*para aparecer por encima de img de fondo*/
+}
+        /* ---.navpeq--- */
+        /* ---.contenedor--- */
+.contenedor{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    align-self: center;
+}
+.contenedor p{
+    font-size: 2em;
+    left: 25%;
+    top: 20%;
+    background-color: transparent;
+    transition: none;/* al reducirse la pantalla no quiero que aparezca*/
+}
+.contenedor:hover p{
+display: none;/*BUG al ponerme encima con el raton hace efecto GLICH --> no encontré solución*/
+}
+        /* ---.contenedor--- */
+        /* ---.porfolio--- */
+.porfolio{
+    grid-template-columns: repeat(2, auto);
+    align-content: center;
+    justify-content: space-around;
+}
+.porfolio img, .porfolio a{
+   height: 200px;
+   width: 200px;
+}
+.modal img{
+    height: 450px;
+    width: 450px;
+}
+.modal button{
+    font-size:3em;
+}
+        /* ---.porfolio--- */
+        /* ---proyectos.html--- */
+#proyectos section:nth-child(5){
+    flex-direction: column;
+}
+#proyectos img{
+    height: 400px;
+}
+#proyectos h2{
+    font-size: 8em;
+    top:60%;/*centrar texto en la img*/
+}
+#fame h2{
+    font-size:10em;
+}
+        /* ---proyectos.html--- */
+        /* ---sección tres index.html--- */
+.palabra{
+    animation-duration: 3s;/*BUG palabras iban demasiado lento porque al reducirse amplitud pantalla afecta a tiempo --> FIX aumentar velocidad*/
+}
+.zona:nth-child(2) .palabra{
+    animation-duration: 2s;
+}
+.zona:nth-child(3) .palabra{
+    animation-duration: 1.8s;
+}
+.zona:nth-child(4) .palabra{
+    animation-duration: 2.3s;
+}
+        /* ---sección tres index.html--- */
+}
+    /* ---media queries 850px --- */
+
+    /* ---media queries 500px --- */
+    /*
+    Descripción: estilo max-width 500px 
+        Estructura:
+        global
+        index.html 
+                - .contenedor (1a sección)
+                - .porfolio (3a sección galería de img)
+        #proyectos.html 
+            - h2
+            - img
+    */
+@media screen and (max-width:500px){
+        /* ---global--- */
+    h2{
+        font-size: 2.2em;
+    }
+    h3{
+        font-size: 2.5em;
+    }
+    video{
+        height:400px;
+    }
+        /* ---global--- */
+        /* ---index.html--- */
+    section:nth-child(2){
+        background-position-x: 85%;
+        background-position-y: 40%;
+    }
+    section:nth-child(4){
+        background-position-x: 80%;
+    }
+    section:nth-child(5){
+        background-size: 670px;
+    }
+        /* ---index.html--- */
+        /* ---.porfolio--- */
+    .porfolio img, .porfolio a{
+       height: 130px;
+       width: 130px;
+    }
+    .modal img{
+        height: 300px;
+        width: 300px;
+    }
+    .modal button{
+        font-size:2em;
+    }
+        /* ---.porfolio--- */
+        /* ---.contenedor--- */
+    .contenedor p{
+        font-size: 18px;
+    }
+         /* ---.contenedor--- */
+        /* ---proyectos.html--- */
+    #proyectos h2{
+        font-size: 4em;
+    }
+    #proyectos h3{
+        font-size: 1.3em;
+    }
+    #oliver h2{
+        font-size: 6em;
+    }
+    #fame h2{
+        font-size: 8em;
+    }
+    #proyectos img{
+        height: 300px;
+    }
+    #clodving img{
+        height: 200px;
+    }
+        /* ---proyectos.html--- */
+    }
+    /* ---media queries 500px --- */
+/* ---media queries--- */

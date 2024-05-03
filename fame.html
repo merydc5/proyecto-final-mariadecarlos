@@ -1,0 +1,108 @@
+<!--Esta es una página de contenido de mi web
+    Estructura:
+    - barra de navegación
+    - 3 secciones de contenido
+        - imágenes y texto
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/estilo.css">
+    <script defer src="js/functions.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/1c29b8ec35.js" crossorigin="anonymous"></script>
+    <title>Document</title>
+</head>
+<body id="proyectos">
+    <nav class="navnormal">
+    <!--"navnormal" es el navegador hasta que llega al mínimo de 800px-->
+    <!-- estructura nav diferente al index.html para adaptarlo a necesidad de la estructura de las páginas-->
+        <ul>
+            <li> <a href= index.html>home</a></li>
+            <li> <a href="#fame"><b>fame</b></a> </li>
+            <li> <a href= #projects>other projects</a> 
+                <ul>
+                    <li> <a href="clodving.html">clodving</a></li>
+                    <li> <a href="oliver.html">oliver</a></li>
+                    <li> <a href="istomina.html">istomina</a></li>
+                </ul>  
+            </li>
+        </ul>
+        <div class="modo claro">
+        <!--este div hace referencia a un botón(noche.png) que puedes encender o apagar para cambiar el color de fondo de la pantalla-->
+            <img id="claro" src="img/boton/noche.png" >
+        </div>  
+    </nav>
+    <button class="abrir"><i class="fa-solid fa-bars-staggered"></i></button>
+    <!--botones para el "navpeq" (max de 800px) de fontawesome-->
+    <nav class="navpeq">
+        <button class="cerrar"><i class="fa-solid fa-xmark"></i></button>
+        <ul> 
+            <li> <a href="index.html">home</a></li>
+            <li> <a href="clodving.html">clodving</a></li>
+            <li> <a href="oliver.html">oliver</a></li>
+            <li> <a href="istomina.html">istomina</a></li>
+        </ul>
+    </nav>
+    <section id="fame">
+    <!--sección FAME, vuelve a remarcar dónde se encuentra el usuario además de servir como portada del proyecto. 1 imagen principal y el título del proyecto-->
+            <h2>fame</h2>
+            <img src="img/moda/fame1.jpg">
+    </section>
+    <section>
+    <!--sección 2, sirve para mostrar 2 imágenes de dicho trabajo-->
+        <img src="img/moda/fame4.jpg">
+        <img src="img/moda/fame3.png">
+    </section>
+    <section>
+    <!--sección 3, sirve para dar una información breve del proyecto y enlace del trabajo con una imágen final del mismo-->
+        <h3>for <a href="https://fame-studios.com/" target="_blank">fame</a></h3>
+        <img src="img/moda/fame2.png">
+    </section>
+</body>
+<script>
+/* 
+    Interacción: 
+    cambiar el backgroundColor de blanco a negro al pulsar el botón y el botón también cambia su ruta .png al pulsarse.
+
+    Estructura:
+    constante
+    variables 
+    función
+        if/else
+    */
+//selección de todas las secciones
+const fondo = document.querySelectorAll("section");
+
+//variable que coge la imagen con el id claro
+let displayImage = document.getElementById('claro');
+
+//variable que dice que claro es verdadero
+let claro = true;
+function changeImage(){
+    if(claro){
+        displayImage.src ='img/boton/dia.png';
+        for (let i = 0; i < fondo.length; i++) {
+        fondo[i].style.backgroundColor = "black"; }
+    //si es true queremos que la imagen del botón cambie la ruta "dia.png" y que el color del fondo sea negro
+    }else{
+    //si es false queremos que la imagen del botón cambie la ruta "noche.png" y que el color del fondo sea blanco
+        displayImage.src ='img/boton/noche.png';
+        for (let i = 0; i < fondo.length; i++) {
+        fondo[i].style.backgroundColor = "white"; }
+    }
+    claro = !claro;// si claro es true, inmediatamente queremos que claro sea false
+}
+displayImage.addEventListener("click", function(){
+    changeImage()
+//permite que al hacer click se aplica la función que cambia el backgroundColor de las secciones y también la ruta del .png
+});
+</script>
+</html>

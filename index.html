@@ -1,0 +1,123 @@
+<!--Esta es la página principal de mi web
+    Estructura:
+    - barra de navegación
+    - 4 secciones de contenido
+        - texto, vídeo, imágenes
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/estilo.css">
+    <script defer src="js/functions.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/1c29b8ec35.js" crossorigin="anonymous"></script>
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <!--"navnormal" es el navegador hasta que llega al mínimo de 800px 
+            - tiene un li "derecha" para poder desplazarlo diferente al resto del nav     
+        -->
+        <nav class="navnormal">
+            <ul>
+                <li> <a #projects> PROJECTS</a> 
+                    <ul>
+                        <li> <a href="clodving.html">CLODVING</a></li>
+                        <li> <a href="fame.html">FAME</a></li>
+                        <li> <a href="oliver.html">OLIVER</a></li>
+                        <li> <a href="istomina.html">ISTOMINA</a></li>
+                    </ul>    
+                </li>
+                <!--he dividido el navegador porque #projects son trabajos fotográficos con diferente html y en cambio la dcha. es un nav que te permite desplazarte a través de esta misma pág.-->
+                <div class="derecha">
+                    <li> <a href="#who"> <B>Who</B></a> </li>
+                    <li> <a href="#am"> am</a> </li>
+                    <li> <a href="#i"> I</a> </li>
+                    <li> <a href="#&#63"> &#63</a> </li>
+                </div>
+            </ul>
+        </nav>
+        <!--botones para el "navpeq" (max de 800px) de fontawesome-->
+        <button class="abrir"><i class="fa-solid fa-bars-staggered"></i></button>
+        <nav class="navpeq">
+            <button class="cerrar"><i class="fa-solid fa-xmark"></i></button>
+            <ul> 
+                <li> <a href="index.html">HOME</a></li>
+                <li> <a href="clodving.html">CLODVING</a></li>
+                <li> <a href="fame.html">FAME</a></li>
+                <li> <a href="oliver.html">OLIVER</a></li>
+                <li> <a href="istomina.html">ISTOMINA</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section id="who">
+    <!--sección WHO, habla de quién soy: mi nombre y una breve descripción de a qué me dedico. Solo texto-->
+        <div class="contenedor">
+            <h2>MARIA DE CARLOS</h2>
+            <p>fashion photographer and creative director based in Madrid // analog | digital | photo | video | graphic design</p>
+        </div>  
+    </section>
+    <section id="am">
+    <!--sección AM, muestra mi trabajo: galería de 6 fotos de los proyectos. Solo fotos-->
+        <h2>FASHION</h2>
+        <div class="porfolio">
+            <a href="img/galeria/istogal (1).jpg"><img src="img/galeria/istogal (1).jpg"></a>
+            <a href="img/galeria/clodvingal (2).jpg"><img src="img/galeria/clodvingal (2).jpg"></a>
+            <a href="img/galeria/oligal (1).jpg"><img src="img/galeria/oligal (1).jpg"></a>
+            <a href="img/galeria/istogal (2).jpg"><img src="img/galeria/istogal (2).jpg"></a>
+            <a href="img/galeria/clodvingal (3).jpg"><img src="img/galeria/clodvingal (3).jpg"></a>
+            <a href="img/galeria/oligal (2).jpg"><img src="img/galeria/oligal (2).jpg"></a>
+        </div>
+        <div class="modal">
+        <!--cuando haces click en imágen se activa modal. formado por imágen y flechas de hacia delante y atrás-->
+            <button>&lt;</button>
+            <img src="img/moda/Oliver1.jpg">
+            <button>&gt;</button>
+        </div>    
+    </section>
+    <section id="i">
+        <!--sección I, muestra un vídeo de mi último proyecto. Solo un vídeo con reproducción auto y sin sonido-->
+        <h2>PHOTOGRAPHER</h2>
+        <video src="img/videos/MAKING OFF CLODVING PUBLICACION INSTAGRAM.mp4" width="400" height="600" autoplay muted></video>
+    </section>
+    <section id="?">
+        <!--sección ?, muestra el nombre de mis proyectos: sus 4 nombres pasan por la pantalla y a su vez son enlaces que te dirigen a dichos proyectos. Por si no quedara clara la acción, para recalcarlo el título es CLICK-->
+        <h2>CLICK</h2>
+        <div class="zona">
+            <a href="istomina.html">
+                <div class="palabra">
+                    <h3>istomina</h3>
+                </div>
+            </a>
+        </div>
+        <div class="zona">
+            <a href="oliver.html">
+                <div class="palabra">
+                    <h3>oliver</h3>
+                </div>
+            </a>
+        </div>
+        <div class="zona">
+            <a href="clodving.html">
+                <div class="palabra">
+                    <h3>clodving</h3>
+                </div>
+            </a>
+        </div>
+        <div class="zona">
+            <a href="fame.html">
+                <div class="palabra">
+                    <h3>fame</h3>
+                </div>
+            </a>
+        </div>
+    </section>
+</body>
+</html>
